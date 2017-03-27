@@ -1,13 +1,11 @@
 package com.tperraut.airball.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tperraut.airball.sprites.Background;
 import com.tperraut.airball.sprites.Ball;
 import com.tperraut.airball.sprites.Cage;
 import com.tperraut.airball.sprites.Player;
-import com.tperraut.airball.sprites.UnderCage;
 
 /**
  * Created by tperraut on 25/03/2017.
@@ -16,17 +14,15 @@ import com.tperraut.airball.sprites.UnderCage;
 public class PlayState extends State {
     private Ball mBall;
     private Player mPlayer;
-    private UnderCage mUnderCage;
     private Cage mCage;
     private Background mBackground;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
         mBackground = new Background(0, 0);
-        mBall = new Ball(50, 50);
-        mPlayer = new Player(100, 100);
-        mUnderCage = new UnderCage(0, 0);
         mCage = new Cage(Gdx.graphics.getWidth() / 2, 0);
+        mPlayer = new Player(Gdx.graphics.getWidth() / 2, mCage.getHeight() + MenuState.PADDING);
+        mBall = new Ball(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
     }
 
     @Override
@@ -38,7 +34,11 @@ public class PlayState extends State {
     @Override
     public void update(float dt) {
         handleInput();
-        mBall.update(dt);
+        mPlayer.update(dt);
+        if (mBall.collision(mPlayer.getBounds()))
+            mBall.update(dt, mPlayer);
+        else
+            mBall.update(dt);
     }
 
     @Override
@@ -46,10 +46,8 @@ public class PlayState extends State {
         sb.begin();
         sb.draw(mBackground.getTexture(), mBackground.getPosition().x, mBackground.getPosition().y,
                 mBackground.getWidth(), mBackground.getHeight());
-        sb.draw(mUnderCage.getTexture(), mUnderCage.getPosition().x, mUnderCage.getPosition().y,
-                mUnderCage.getWidth(), mUnderCage.getHeight());
-        sb.draw(mBall.getTexture(), mBall.getPosition().x, mBall.getPosition().y, mBall.getWidth(),
-                mBall.getHeight());
+        sb.draw(mBall.getTexture(), mBall.getPosition().x - mBall.getWidth() / 2, mBall.getPosition().y,
+                mBall.getWidth(), mBall.getHeight());
         sb.draw(mPlayer.getTexture(), mPlayer.getPosition().x - mPlayer.getWidth() / 2,
                 mPlayer.getPosition().y - mPlayer.getHeight() / 2, mPlayer.getWidth(),
                 mPlayer.getHeight());
@@ -62,7 +60,6 @@ public class PlayState extends State {
     public void dispose() {
         mBall.dispose();
         mPlayer.dispose();
-        mUnderCage.dispose();
         mCage.dispose();
         mBackground.dispose();
     }

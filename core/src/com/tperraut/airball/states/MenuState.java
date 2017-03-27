@@ -13,7 +13,7 @@ public class MenuState extends State{
     private Texture mBackground;
     private Button mPlayBtn;
     private Button mExitBtn;
-    private static final int PADDING = 20;
+    public static final int PADDING = 20;
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
