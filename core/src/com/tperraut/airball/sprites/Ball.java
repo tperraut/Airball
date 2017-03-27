@@ -12,6 +12,10 @@ public class Ball extends WorldObject {
         super(new Texture("ball.png"), x, y, 10, 0.1f);
     }
 
+    public Ball(int x, int y, float percent) {
+        super(new Texture("ball.png"), x, y, 10, percent);
+    }
+
     @Override
     public void update(float dt) {
 

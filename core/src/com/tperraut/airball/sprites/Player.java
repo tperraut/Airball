@@ -8,12 +8,13 @@ import com.badlogic.gdx.math.Vector3;
  */
 
 public class Player extends WorldObject {
-    private Vector3 mVelocity;
-
 
     public Player(int x, int y) {
         super(new Texture("player.png"), x, y, 20, 0.2f);
-        mVelocity = new Vector3(0, 0, 0);
+    }
+
+    public Player(int x, int y, float percent) {
+        super(new Texture("player.png"), x, y, 20, percent);
     }
 
     @Override
