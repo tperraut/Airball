@@ -13,6 +13,6 @@ public class Cage extends Item {
     }
 
     public Cage(int x, int y) {
-        super(new Texture("cage.png"), x, y, 1f);
+        super(new Texture("cage.png"), x, y, 0.7f);
     }
 }

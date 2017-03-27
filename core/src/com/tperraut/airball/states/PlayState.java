@@ -46,15 +46,15 @@ public class PlayState extends State {
         sb.begin();
         sb.draw(mBackground.getTexture(), mBackground.getPosition().x, mBackground.getPosition().y,
                 mBackground.getWidth(), mBackground.getHeight());
+        sb.draw(mUnderCage.getTexture(), mUnderCage.getPosition().x, mUnderCage.getPosition().y,
+                mUnderCage.getWidth(), mUnderCage.getHeight());
         sb.draw(mBall.getTexture(), mBall.getPosition().x, mBall.getPosition().y, mBall.getWidth(),
                 mBall.getHeight());
         sb.draw(mPlayer.getTexture(), mPlayer.getPosition().x - mPlayer.getWidth() / 2,
                 mPlayer.getPosition().y - mPlayer.getHeight() / 2, mPlayer.getWidth(),
                 mPlayer.getHeight());
-        sb.draw(mUnderCage.getTexture(), mUnderCage.getPosition().x, mUnderCage.getPosition().y,
-                mUnderCage.getWidth(), mUnderCage.getHeight());
         sb.draw(mCage.getTexture(), mCage.getPosition().x - mCage.getWidth() / 2,
-                mCage.getPosition().y + mCage.getHeight(), mCage.getWidth(), mCage.getHeight());
+                mCage.getPosition().y, mCage.getWidth(), mCage.getHeight());
         sb.end();
     }
 

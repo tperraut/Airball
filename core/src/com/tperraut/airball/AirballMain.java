@@ -28,6 +28,6 @@ public class AirballMain extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
-		batch.dispose();;
+		batch.dispose();
 	}
 }
