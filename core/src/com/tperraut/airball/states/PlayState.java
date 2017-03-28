@@ -12,6 +12,8 @@ import com.tperraut.airball.sprites.Player;
  */
 
 public class PlayState extends State {
+    public static final float WORLDRATIO = Math.min(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
     private Ball mBall;
     private Player mPlayer;
     private Cage mCage;
@@ -35,10 +37,7 @@ public class PlayState extends State {
     public void update(float dt) {
         handleInput();
         mPlayer.update(dt);
-        if (mBall.collision(mPlayer.getBounds()))
-            mBall.update(dt, mPlayer);
-        else
-            mBall.update(dt);
+        mBall.update(dt, mPlayer);
     }
 
     @Override
@@ -46,7 +45,8 @@ public class PlayState extends State {
         sb.begin();
         sb.draw(mBackground.getTexture(), mBackground.getPosition().x, mBackground.getPosition().y,
                 mBackground.getWidth(), mBackground.getHeight());
-        sb.draw(mBall.getTexture(), mBall.getPosition().x - mBall.getWidth() / 2, mBall.getPosition().y,
+        sb.draw(mBall.getTexture(), mBall.getPosition().x - mBall.getWidth() / 2,
+                mBall.getPosition().y - mBall.getHeight() / 2,
                 mBall.getWidth(), mBall.getHeight());
         sb.draw(mPlayer.getTexture(), mPlayer.getPosition().x - mPlayer.getWidth() / 2,
                 mPlayer.getPosition().y - mPlayer.getHeight() / 2, mPlayer.getWidth(),

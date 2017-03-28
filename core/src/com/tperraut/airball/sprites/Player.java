@@ -21,14 +21,17 @@ public class Player extends WorldObject {
     }
 
     @Override
-    public void update(float dt) {
+    public void update(float dt, WorldObject obj) {
         mVelocity.set(mPosition.x - mOldPosition.x, mPosition.y - mOldPosition.y, 0);
         mVelocity.scl(1 / dt);
+    }
+
+    public void update(float dt) {
+        update(dt, null);
     }
 
     public void move(int x, int y) {
         mOldPosition.set(mPosition.x, mPosition.y, 0);
         mPosition.set(x, y, 0);
-        mBounds.setPosition(x + this.getWidth() / 2, y + this.getHeight() / 2);
     }
 }
