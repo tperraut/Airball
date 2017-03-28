@@ -12,8 +12,6 @@ import com.tperraut.airball.sprites.Player;
  */
 
 public class PlayState extends State {
-    public static final float WORLDRATIO = Math.min(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
     private Ball mBall;
     private Player mPlayer;
     private Cage mCage;

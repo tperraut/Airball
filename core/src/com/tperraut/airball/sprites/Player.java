@@ -11,7 +11,7 @@ public class Player extends WorldObject {
     private Vector3 mOldPosition;
 
     public Player(int x, int y) {
-        super(new Texture("player.png"), x, y, 20, 0.2f);
+        super(new Texture("player.png"), x, y, 20, 0.15f);
         mOldPosition = new Vector3(0, 0, 0);
     }
 
@@ -23,7 +23,7 @@ public class Player extends WorldObject {
     @Override
     public void update(float dt, WorldObject obj) {
         mVelocity.set(mPosition.x - mOldPosition.x, mPosition.y - mOldPosition.y, 0);
-        mVelocity.scl(1 / dt);
+        mVelocity.scl(1f / dt);
     }
 
     public void update(float dt) {

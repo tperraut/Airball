@@ -1,6 +1,5 @@
 package com.tperraut.airball.sprites;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector3;
@@ -11,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 
 public abstract class WorldObject extends Item {
     private final int mMass;
+    private Circle mBounds;
 
     protected Vector3 mVelocity;
 
@@ -18,6 +18,7 @@ public abstract class WorldObject extends Item {
         super(t, x, y, percent);
         mMass = m;
         mVelocity = new Vector3(0, 0, 0);
+        mBounds = new Circle(x, y, this.getWidth() / 2);
     }
 
     public Circle getBounds() {
@@ -25,8 +26,7 @@ public abstract class WorldObject extends Item {
     }
 
     public boolean collision(Circle o) {
-        Circle mBounds;
-        mBounds = new Circle(mPosition.x, mPosition.y, this.getWidth() / 2);
+        mBounds.setPosition(mPosition.x, mPosition.y);
         return mBounds.overlaps(o);
     }
 
